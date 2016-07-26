@@ -1,10 +1,10 @@
 *** Settings ***
-Library           lib/ExampleLibrary.py
+Library           lib-function/MyFunction.py
 
 *** Test Cases ***
 My Test
     Do Nothing
-#    Do Nothing2
+    #    Do Nothing2
 
 Log
     Log Test
@@ -13,7 +13,7 @@ My Test
     Hello    world
     No Arguments
     One Argument    box1
-    Three Arguments    box1     ip1     port1
+    Three Arguments    box1    ip1    port1
 
 Returning multiple values
     ${var1}    ${var2} =    Return Two Values
