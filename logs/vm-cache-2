@@ -1,0 +1,18 @@
+Trying 192.168.0.99...
+Connected to 192.168.0.99.
+Escape character is '^]'.
+
+VM64Cache2 login: admin
+admin
+Password: 
+
+
+No entry for terminal type "xterm-256color";
+using dumb terminal settings.
+Welcome !
+
+VM64Cache2 # config system global
+set host VM64Cache2
+set admintime 480
+end
+get system status

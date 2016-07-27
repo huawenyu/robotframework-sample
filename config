@@ -1,11 +1,23 @@
 [linux-1]
+type = linux
 host = 172.16.80.129
-command = ssh user@172.16.80.129
+command = ssh user@%(host)s
 username = user
 password = password
+prompt = remoteloginlinux
 
 [vm-cache]
+type = dut
 host = 172.16.80.126
-command = telnet 172.16.80.126
+command = telnet %(host)s
 username = admin
 password =
+prompt = VM64Cache
+
+[vm-cache-2]
+type = dut
+host = 192.168.0.99
+command = telnet %(host)s
+username = admin
+password =
+prompt = VM64Cache2
