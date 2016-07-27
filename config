@@ -1,0 +1,11 @@
+[linux-1]
+host = 172.16.80.129
+command = ssh user@172.16.80.129
+username = user
+password = password
+
+[vm-cache]
+host = 172.16.80.126
+command = telnet 172.16.80.126
+username = admin
+password =

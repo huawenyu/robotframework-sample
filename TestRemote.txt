@@ -1,0 +1,8 @@
+*** Settings ***
+Library           lib-remote/MyRemote.py
+
+*** Test Cases ***
+My Test
+    Sendline    "linux-1"    "ls -l"
+    Sendline    "linux-1"    "uname -a"
+    Sendline    "vm-cache"    "get system status"
