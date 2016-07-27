@@ -1,8 +1,10 @@
 *** Settings ***
+Library           OperatingSystem
 Library           lib-remote/MyRemote.py
 
 *** Test Cases ***
 My Test
-    Sendline    "linux-1"    "ls -l"
-    Sendline    "linux-1"    "uname -a"
-    Sendline    "vm-cache"    "get system status"
+    Log         ${EXECDIR}
+    Sendline    linux-1    ls -l        # please donnot use any quote here
+    Sendline    linux-1    uname -a
+    Sendline    vm-cache   get system status

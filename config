@@ -5,14 +5,18 @@ command = ssh user@%(host)s
 username = user
 password = password
 prompt = remoteloginlinux
+echo = echo
 
 [vm-cache]
 type = dut
 host = 172.16.80.126
+port1 = 172.16.80.126
+port2 = 192.168.1.126
 command = telnet %(host)s
 username = admin
 password =
 prompt = VM64Cache
+echo = sysctl echo
 
 [vm-cache-2]
 type = dut
@@ -20,4 +24,5 @@ host = 192.168.0.99
 command = telnet %(host)s
 username = admin
 password =
-prompt = VM64Cache2
+prompt = VM64Cache99
+echo = sysctl echo
