@@ -5,7 +5,7 @@ TestDut.txt
 *** Settings ***
 Library           OperatingSystem
 Library           Dialogs
-Library           lib-remote/MyRemote.py
+Library           ${LIBRARYS}/AtRemote.py
 Suite Setup       Add Firewall Policy Of Implicit Proxy   3
 Suite Teardown    Del This Firewall Policy   3
 

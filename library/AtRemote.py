@@ -20,8 +20,8 @@ echo_list = ['fnsysctl echo', 'sysctl echo', 'echo']
 def PrintE(e):
     exc_type, exc_obj, exc_tb = sys.exc_info()
     fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-    logger.info("%s:%d %s: %s", fname, exc_tb.tb_lineno, str(exc_type), e.args)
-    #print("%s %s %d" % (exc_type, fname, exc_tb.tb_lineno))
+    #logger.info("%s:%d %s: %s", fname, exc_tb.tb_lineno, str(exc_type), e.args)
+    print("%s %s %d" % (exc_type, fname, exc_tb.tb_lineno))
     raise
 
 class Unbuffered(object):
@@ -33,7 +33,7 @@ class Unbuffered(object):
    def __getattr__(self, attr):
        return getattr(self.stream, attr)
 
-class MyRemote:
+class AtRemote:
     ROBOT_LIBRARY_SCOPE = 'GLOBAL'
 
     def __init__(self):
@@ -45,13 +45,17 @@ class MyRemote:
         ansi_escape = re.compile(r'\x1b[^m]*m')
 
         import logging.config
-        if (os.path.isfile('log.conf')):
-            log_config = (os.path.join(os.getcwd(),'log.conf'))
-            print log_config
+        if __name__ == '__main__':
+            log_conf = 'log.conf'
+        else:
+            log_conf = BuiltIn().get_variable_value('${LOG_CONF_FILE}', default='log.conf')
+        if (os.path.isfile(log_conf)):
+            log_config = (os.path.join(os.getcwd(), log_conf))
             logging.config.fileConfig(log_config)
             logger = logging.getLogger(__name__)
+            BuiltIn().log_to_console("Loading log config %s" % (log_config))
         else:
-            raise Exception('log.config not exist.')
+            raise Exception('Log config not exist.')
 
         self._check_config()
 
@@ -60,13 +64,17 @@ class MyRemote:
         global logger
         global type_list
 
-        if (os.path.isfile('config')):
+        if __name__ == '__main__':
+            dut_conf = 'dut.conf'
+        else:
+            dut_conf = BuiltIn().get_variable_value('${DUT_CONF_FILE}', default='dut.conf')
+        if (os.path.isfile(dut_conf)):
             AT_CONFIG = SafeConfigParser()
-            config_file = (os.path.join(os.getcwd(),'config'))
+            config_file = (os.path.join(os.getcwd(), dut_conf))
             AT_CONFIG.read(config_file)
             dut_ids = AT_CONFIG.sections()
             logger.info("Loading config %s: %s", config_file, dut_ids)
-            BuiltIn().log_to_console("Loading config %s: %s" % (config_file, dut_ids))
+            BuiltIn().log_to_console("Loading config %s" % (config_file))
         else:
             raise Exception('config not exist.')
 
@@ -344,3 +352,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

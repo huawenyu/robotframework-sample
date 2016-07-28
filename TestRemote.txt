@@ -1,6 +1,6 @@
 *** Settings ***
 Library           OperatingSystem
-Library           lib-remote/MyRemote.py
+Library           ${LIBRARYS}/AtRemote.py
 
 *** Test Cases ***
 My Test
