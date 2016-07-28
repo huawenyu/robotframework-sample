@@ -1,28 +1,23 @@
-[linux-1]
-type = linux
-host = 172.16.80.129
-command = ssh user@%(host)s
-username = user
-password = password
-prompt = remoteloginlinux
-echo = echo
+# config
+#
+# $ robot -A config
 
-[vm-cache]
-type = dut
-host = 172.16.80.126
-port1 = 172.16.80.126
-port2 = 192.168.1.126
-command = telnet %(host)s
-username = admin
-password =
-prompt = VM64Cache
-echo = sysctl echo
+# library use
+--variable DUT_CONF_FILE:dut.conf
+--variable LOG_CONF_FILE:log.conf
 
-[vm-cache-2]
-type = dut
-host = 192.168.0.99
-command = telnet %(host)s
-username = admin
-password =
-prompt = VM64Cache99
-echo = sysctl echo
+# testcase suite use
+--variable LIBRARYS:library
+--variable RESOURCES:resource
+
+# robot use
+--debugfile /tmp/robot.debug
+--outputdir /tmp
+--timestampoutputs
+--loglevel DEBUG:INFO
+--console verbose
+#--argumentfile
+#--listener path/to/Listener.py:arg1:arg2
+
+# Test suite start here
+TestDut.txt

@@ -99,6 +99,11 @@ class MyRemote:
         if dut.before.find(simple_str) == -1:
             raise Exception("DUT '%s' search fail: '%s'." % (dut_id, simple_str))
 
+    def expect_dump(self, dut_id):
+        dut = self.__resolve_dut(dut_id)['dut']
+        BuiltIn().log_to_console("\nDump(%s):\n------\n%s\n------\n" % (dut_id, dut.before))
+        logger.info("\nDump(%s):\n------\n%s\n------\n", dut_id, dut.before)
+
     def flush(self, dut_id):
         self.anchor(dut_id)
 
