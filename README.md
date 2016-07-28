@@ -1,14 +1,19 @@
 Install Robotframework
 ======================
 ``` Shell
-$ sudo pip install robotframework 
+$ sudo pip install robotframework
 $ sudo pip install docutils
 $ sudo pip install robotframework-selenium2library
 $ sudo pip install robotframework-ride
-
+$ sudo apt-get install python-tk        <<< used by Diaglog
 $ sudo apt-get install python-wxgtk2.8	<<< used by RIDE
 $ ride.py		<<< GUI
 ```
+
+Run
+===
+
+`$ robot -A config`
 
 Sample: Hello world
 ===================
