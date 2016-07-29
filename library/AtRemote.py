@@ -318,11 +318,15 @@ class AtRemote:
         try:
             dut = pexpect.spawn(command)
 
+            if __name__ == '__main__':
+                  log_dir = 'logs'
+            else:
+                  log_dir = BuiltIn().get_variable_value('${LOG_DIR}', default='logs')
             # logfile_read() will ONLY log the network device's echo'd output.
             #   It will not log p.sendline() characters. This is the desired
             #   result the original poster was looking for.
-            #dut.logfile = open("logs/" + dut_id, "w")
-            dut.logfile_read = open("logs/" + dut_id, "w")
+            #dut.logfile = open(log_dir + "/" + dut_id, "w")
+            dut.logfile_read = open(log_dir + '/' + dut_id, "w")
 
             AT_DUTS[dut_id] = {'dut': dut, 'state': DutState.Connect, 'echo': AT_CONFIG.get(dut_id, 'echo')};
 

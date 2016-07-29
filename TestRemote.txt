@@ -1,3 +1,7 @@
+# -*- coding: robot -*-
+TestRemote.txt
+    Sample: show connect to remote server.
+
 *** Settings ***
 Library           OperatingSystem
 Library           ${LIBRARYS}/AtRemote.py

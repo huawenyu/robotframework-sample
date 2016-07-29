@@ -5,14 +5,15 @@
 # library use
 --variable DUT_CONF_FILE:dut.conf
 --variable LOG_CONF_FILE:log.conf
+--variable LOG_DIR:logs
 
 # testcase suite use
 --variable LIBRARYS:library
 --variable RESOURCES:resource
 
 # robot use
---debugfile /tmp/robot.debug
---outputdir /tmp
+--debugfile robot.debug
+--outputdir logs
 --timestampoutputs
 --loglevel DEBUG:INFO
 --console verbose
@@ -21,3 +22,4 @@
 
 # Test suite start here
 TestDut.txt
+

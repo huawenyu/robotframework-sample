@@ -1,79 +1,53 @@
-# -*- coding: robot -*-
-TestDut.txt
-    Use to show how to test dut as webproxy.
-
 *** Settings ***
+Suite Setup       Add Firewall Policy Of Implicit Proxy    3
+Suite Teardown    Del This Firewall Policy    3
 Library           OperatingSystem
 Library           Dialogs
 Library           ${LIBRARYS}/AtRemote.py
-Suite Setup       Add Firewall Policy Of Implicit Proxy   3
-Suite Teardown    Del This Firewall Policy   3
+Resource          ${RESOURCES}/common.txt
 
 *** Test Cases ***
 For-Loop-In-Range
-    : FOR    ${INDEX}    IN RANGE    1    30
+    : FOR    ${INDEX}    IN RANGE    1    2
     \    Log    ${INDEX}
     \    Curl Access Implicit Proxy
-    \    Run Keyword If     ${INDEX} == 3     pause execution     'Hold for keep config'
-    \    Run Keyword If     ${INDEX} == 6     Fatal Error     'Exit for keep config'
-    \    Sleep          1s
+    \    Run Keyword If    ${INDEX} == 3    pause execution    'Hold for keep config'
+    \    Run Keyword If    ${INDEX} == 6    Fatal Error    'Exit for keep config'
+    \    Sleep    1s
 
 For-Loop-Elements
     @{ITEMS}    Create List    Star Trek    Star Wars    Perry Rhodan
-    :FOR    ${ELEMENT}    IN    @{ITEMS}
+    : FOR    ${ELEMENT}    IN    @{ITEMS}
     \    Log    ${ELEMENT}
     \    Curl Access Implicit Proxy
 
 *** KeyWords ***
 Add Firewall Policy Of Implicit Proxy
     [Arguments]    ${polid}
-
-    ${firewall_pol}=  catenate  SEPARATOR='\n'
-    ...  config firewall pol
-    ...  edit ${polid}
-    ...      set srcintf "port2"
-    ...      set dstintf "port1"
-    ...      set srcaddr "all"
-    ...      set dstaddr "all"
-    ...      set action accept
-    ...      set schedule "always"
-    ...      set service "ALL"
-    ...      set utm-status enable
-    ...      set logtraffic all
-    ...      set logtraffic-start enable
-    ...      set log-http-transaction enable
-    ...      set webcache enable
-    ...      set webcache-https any
-    ...      set webproxy-profile "add-xforw"
-    ...      set profile-protocol-options "default"
-    ...      set ssl-ssh-profile "deep-inspection"
-    ...      set nat enable
-    ...  next
-    ...  end
-
+    ${firewall_pol}=    catenate    SEPARATOR='\n'    config firewall pol    edit ${polid}    set srcintf "port2"    set dstintf "port1"
+    ...    set srcaddr "all"    set dstaddr "all"    set action accept    set schedule "always"    set service "ALL"    set utm-status enable
+    ...    set logtraffic all    set logtraffic-start enable    set log-http-transaction enable    set webcache enable    set webcache-https any    set webproxy-profile "add-xforw"
+    ...    set profile-protocol-options "default"    set ssl-ssh-profile "deep-inspection"    set nat enable    next    end
     Sendline    vm-cache    ${firewall_pol}
-
-    ${port2} =          Get Config     vm-cache         port2
-    Sendline        linux-1    sudo ip route change default via ${port2}
+    ${port2} =    Get Config    vm-cache    port2
+    Sendline    linux-1    sudo ip route change default via ${port2}
 
 Del This Firewall Policy
     [Arguments]    ${polid}
-
-    ${firewall_pol}=  catenate  SEPARATOR='\n'
-    ...  config firewall pol
-    ...  del ${polid}
-    ...  end
-
+    ${firewall_pol}=    catenate    SEPARATOR='\n'    config firewall pol    del ${polid}    end
     Sendline    vm-cache    ${firewall_pol}
 
 Curl Access Implicit Proxy
-    Log         ${EXECDIR}
-    Sendline    vm-cache   get system status
-    Sendline    vm-cache   diag debug app wad -1
-    Sendline    vm-cache   diag debug enable
+    Log    ${EXECDIR}
+    Sendline    vm-cache    get system status
+    Sendline    vm-cache    diag debug app wad -1
+    Sendline    vm-cache    diag debug enable
+    Kw Capture Start    vm-cache
 
     # request from PC.curl
-    Flush           linux-1
-    Sendline        linux-1    curl www.tired.com
-    Expect String   linux-1    Are you tired?
-    Expect Dump     vm-cache
+    Flush    linux-1
+    Sendline    linux-1    curl www.tired.com
+    Expect String    linux-1    Are you tired?
+
+    Kw Capture Stop    vm-cache
+

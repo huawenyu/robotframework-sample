@@ -1,3 +1,7 @@
+# -*- coding: robot -*-
+TestFunction.txt
+    Sample: show how to run keyword with args.
+
 *** Settings ***
 Library           lib-function/MyFunction.py
 

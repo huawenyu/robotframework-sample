@@ -1,0 +1,17 @@
+# -*- coding: robot -*-
+common.txt
+    Sample: show create routine usefule keywords.
+
+*** Settings ***
+Library           Process
+
+*** Keywords ***
+Kw Capture Start
+    [Arguments]    ${dut_id}
+    # Must have shell=True
+    Start Process       tail -F ${LOG_DIR}/${dut_id} > /tmp/robot.${dut_id}     shell=True      alias=capture_${dut_id}
+
+Kw Capture Stop
+    [Arguments]    ${dut_id}
+    Terminate Process   capture_${dut_id}   kill=true
+
