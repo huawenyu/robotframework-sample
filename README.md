@@ -1,3 +1,13 @@
+Pre-requirement
+===============
+- python3-venv: `sudo apt install -y python3-venv`
+- Auto setup python env by [direnv](https://github.com/direnv/direnv): `sudo apt install -y direnv`
+
+## direnv: auto start python env
+
+
+
+
 Install Robotframework
 ======================
 ``` Shell
@@ -45,7 +55,7 @@ My Keyword
     Directory Should Exist    ${path}
 ```
 
-6. Select the test case from left-tree, and click QuickButton ‘run’ 
+6. Select the test case from left-tree, and click QuickButton ‘run’
 Use F5 to list current all available KeyWord
 
 Run from command line
