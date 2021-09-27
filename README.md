@@ -5,7 +5,14 @@ Pre-requirement
 
 ## direnv: auto start python env
 
+	### everytime, when change .envrc, should allow it by: direnv allow
+	$ cat .envrc
+		python3 -m venv venv/
+		source venv/bin/activate
 
+		# To avoid direnv: "Unable to override PS1 with direnv"
+		# Must be bottom
+		unset PS1
 
 
 Install Robotframework
