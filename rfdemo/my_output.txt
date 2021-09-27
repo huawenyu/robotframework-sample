@@ -1,0 +1,53 @@
+Welcome to Ubuntu 20.04.2 LTS (GNU/Linux 5.8.0-50-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+263 updates can be installed immediately.
+108 of these updates are security updates.
+To see these additional updates run: apt list --upgradable
+
+Your Hardware Enablement Stack (HWE) is supported until April 2025.
+Last login: Sun Sep 26 21:08:11 2021 from 192.168.122.1
+$ 
+$ 
+$ sudo -s
+[sudo] password for ********: 
+# 
+# 
+# 
+# ls -lrt
+total 0
+# 
+# pwd
+/home/********
+# 
+# ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: enp1s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 52:54:00:1f:c8:c6 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.7.135/22 brd 192.168.7.255 scope global dynamic noprefixroute enp1s0
+       valid_lft 9498sec preferred_lft 9498sec
+    inet6 fe80::46a7:4297:8b90:dd06/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+3: enp6s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 52:54:00:54:33:f5 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.122.218/24 brd 192.168.122.255 scope global dynamic noprefixroute enp6s0
+       valid_lft 2175sec preferred_lft 2175sec
+    inet6 fe80::c859:e687:27b1:c2cd/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+# 
+# arp -a
+_gateway (192.168.4.1) at f8:bc:0e:9d:87:52 [ether] on enp1s0
+? (192.168.4.27) at 30:cd:a7:b5:58:2e [ether] on enp1s0
+wilson-note (192.168.122.1) at 52:54:00:73:38:15 [ether] on enp6s0
+? (192.168.7.158) at 74:b6:b6:a1:ba:ed [ether] on enp1s0
+? (192.168.7.157) at 18:90:88:ac:a2:52 [ether] on enp1s0
+? (192.168.7.163) at 74:b6:b6:a1:d9:ed [ether] on enp1s0
+# 

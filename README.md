@@ -2,6 +2,20 @@ Pre-requirement
 ===============
 - python3-venv: `sudo apt install -y python3-venv`
 - Auto setup python env by [direnv](https://github.com/direnv/direnv): `sudo apt install -y direnv`
+- Robotframework
+
+## python venv
+
+	### create/enter a virtual env
+	python3 -m venv venv/
+	source venv/bin/activate
+
+	### save the env to git repo
+	(venv) % pip freeze > requirements.txt
+	(venv) % deactivate
+
+	### after new git clone, create a new env, then restore it from the `requirements.txt`
+	pip install -r requirements.txt
 
 ## direnv: auto start python env
 
@@ -13,6 +27,10 @@ Pre-requirement
 		# To avoid direnv: "Unable to override PS1 with direnv"
 		# Must be bottom
 		unset PS1
+
+## Robotframework
+
+	$ pip install robotframework
 
 
 Install Robotframework

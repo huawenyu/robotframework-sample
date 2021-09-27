@@ -1,0 +1,13 @@
+sfo03-r1r11-sw1:
+  device_type: cisco_ios
+  ip: sfo03-r1r11-sw1
+  username: netadmin
+  password: secretpass
+  port: 22
+
+sfo03-r1r11-sw1:
+  device_type: cisco_ios
+  ip: sfo03-r1r11-sw1
+  username: netadmin
+  password: secretpass
+  port: 22
